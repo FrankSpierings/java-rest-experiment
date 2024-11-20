@@ -15,14 +15,4 @@ public class UserManagementApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserManagementApplication.class, args);
     }
-    
-    @Bean
-    CommandLineRunner runner(ApplicationContext ctx) {
-        return args -> {
-            System.out.println("Beans provided by Spring Boot:");
-            for (String beanName : ctx.getBeanDefinitionNames()) {
-                // System.out.println(beanName);
-            }
-        };
-    }
 }

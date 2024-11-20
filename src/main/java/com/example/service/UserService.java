@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.example.model.UserRequest;
 import com.example.model.User;
 
 @Service
@@ -12,7 +13,10 @@ public class UserService {
     private final Map<Long, User> userDatabase = new HashMap<>();
     private final AtomicLong idCounter = new AtomicLong();
 
-    public User createUser(User user) {
+    public User createUser(UserRequest userRequest) {
+        User user = new User();
+        user.setEmail(userRequest.getEmail());
+        user.setName(userRequest.getName());
         user.setId(idCounter.incrementAndGet());
         userDatabase.put(user.getId(), user);
         return user;

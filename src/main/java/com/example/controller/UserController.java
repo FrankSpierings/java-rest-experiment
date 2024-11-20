@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 import com.example.model.User;
+import com.example.model.UserRequest;
 import com.example.service.UserService;
 
 @RestController
@@ -24,9 +25,10 @@ public class UserController {
 
     @Operation(summary = "Create a new user", description = "Adds a new user to the in-memory database.")
     @ApiResponse(responseCode = "201", description = "User created successfully")
+    @ApiResponse(responseCode = "400", description = "Invalid input")
     @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-        User createdUser = userService.createUser(user);
+    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequest userRequest) {
+        User createdUser = userService.createUser(userRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
