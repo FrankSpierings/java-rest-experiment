@@ -5,7 +5,7 @@ FROM maven:3.8.8-eclipse-temurin-17 AS builder
 WORKDIR /app
 
 # Copy the project files into the container
-COPY . .
+COPY ./api .
 
 # Build the application
 RUN mvn clean package -DskipTests
